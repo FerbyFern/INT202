@@ -25,7 +25,8 @@
   </div>
   <c:if test="${subjects != null}">
     <div class="container m-auto h-auto">
-      <form action="" method="post">
+      <form action="register" method="post">
+        <input type="hidden" name="semester" value="${selectedSemester}"/>
         <div class="row bg-white">
           <div class="col-1">ลำดับ</div>
           <div class="col-1">รหัส</div>
@@ -39,7 +40,7 @@
             <div class="col-1">${subject.subjectId}</div>
             <div class="col-6">${subject.title}</div>
             <div class="col-1">${subject.credit}</div>
-            <div class="col-1"><input type="checkbox" name="registeredSubject" value="${subject.subjectId}">
+            <div class="col-1"><input type="checkbox" name="registeredSubjects" value="${subject.subjectId}">
             </div>
           </div>
         </c:forEach>

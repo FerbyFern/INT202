@@ -25,8 +25,8 @@
                 <div class="box">${value}</div>
             </c:forEach>--%>
             <h3>Menu</h3> <br>
-            <a href="course-list">1) ลงทะเบียน</a> <br>
-            2) ประวัติการลงทะเบียน <br>
+            <a href="course-list">1) ลงทะเบียน </a> <br>
+            <a href="course-registered-history">2) ประวัติการลงทะเบียน </a>
         </div>
     </body>
 </html>

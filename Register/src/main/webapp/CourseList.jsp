@@ -25,7 +25,7 @@
   </div>
   <c:if test="${subjects != null}">
     <div class="container m-auto h-auto">
-      <form action="" method="post">
+      <form action="register" method="post">
         <input type="hidden" name="semester" value="${selectedSemester}"/>
         <div class="row bg-white">
           <div class="col-1">ลำดับ</div>
