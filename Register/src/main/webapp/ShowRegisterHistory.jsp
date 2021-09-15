@@ -4,6 +4,8 @@
 <head>
     <title>Course Register History</title>
     <link rel="stylesheet" type="text/css" href="assets/bootstrap-4.5/css/bootstrap.min.css"/>
+    <meta charset="utf-8">
+    <meta name="viewpoint" content="width=widthdevice, intial-scal=1.0">
 </head>
 <body>
 <div class="container m-auto bg-light w-75">

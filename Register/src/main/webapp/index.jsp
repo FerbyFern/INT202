@@ -4,6 +4,8 @@
 <html>
     <head>
         <title>JSP - Hello World</title>
+        <meta charset="utf-8">
+        <meta name="viewpoint" content="width=widthdevice, intial-scal=1.0">
         <style>
             body {
                 background: lavenderblush;
