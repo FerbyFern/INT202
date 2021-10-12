@@ -40,5 +40,21 @@ public class OfficeRepository {
         }
         return true;
     }
+    public boolean delete(Office office) {
+        return delete(office.getId());
+    }
+    public boolean delete(String officeCode) {
+        try {
+            EntityManager entityManager = getEntityManager();
+            entityManager.getTransaction().begin();
+            Office office = find(officeCode);
+            entityManager.remove(entityManager.contains(office) ? office : entityManager.merge(office));
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }
 

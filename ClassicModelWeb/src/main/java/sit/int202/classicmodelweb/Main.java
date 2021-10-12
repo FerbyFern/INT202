@@ -6,6 +6,8 @@ import jakarta.persistence.Persistence;
 import sit.int202.classicmodelweb.entities.Office;
 import sit.int202.classicmodelweb.repositories.OfficeRepository;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 //        EntityManagerFactory emf =  Persistence.createEntityManagerFactory("classic-model");
@@ -19,7 +21,9 @@ public class Main {
         } else {
             office.setCity("Bangkok");
         }
-        officeRepository.update(office);
+        //officeRepository.update(office);
+        //saveOffice(officeRepository);   //<--call saveOffice
+        deleteOffice(officeRepository);
 
         System.out.println(office);
         System.out.println("---------------------");
@@ -29,4 +33,33 @@ public class Main {
         });
 //        em.close();
     }
+
+/*    private static void saveOffice(OfficeRepository officeRepository) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter new office id: ");
+        String officeCode = sc.next();
+        System.out.print("Enter new office city: ");
+        String city = sc.next();
+        Office newOffice = new Office();
+        newOffice.setId(officeCode);
+        newOffice.setCity(city);
+        newOffice.setCountry("TH");
+        newOffice.setAddressLine1("126 Pracha-utit");
+        newOffice.setPhone("012-345-6789");
+        newOffice.setPostalCode("10140");
+        newOffice.setTerritory("NA");
+        if(! officeRepository.save(newOffice)) {
+            System.out.println("Error: Can't insert new office");
+        }
+*/
+        private static void deleteOffice(OfficeRepository officeRepository) {
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter office id to delete: ");
+            String officeCode = sc.next();
+            if(! officeRepository.delete(officeCode)) {
+                System.out.println("Error: Can't insert new office" + officeCode);
+            } else {
+                System.out.println("Office id "+ officeCode + " has been deleted !!");
+            }
+        }
 }
