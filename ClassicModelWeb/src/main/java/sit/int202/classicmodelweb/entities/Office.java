@@ -6,6 +6,9 @@ import java.util.List;
 
 @Table(name = "offices")
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Office.FindALl", query = "SELECT o FROM Office o")
+})
 public class Office {
     @Id
     @Column(name = "officeCode", nullable = false, length = 10)
@@ -37,9 +40,11 @@ public class Office {
 
     @OneToMany(mappedBy = "officeCode", fetch = FetchType.EAGER)
     private List<Employee> employeeList;
+
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
+
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
@@ -123,6 +128,7 @@ public class Office {
                 ", city='" + city + '\'' +
                 ", phone='" + phone + '\'' +
                 ", country='" + country + '\'' +
+                ", postalCode='" + postalCode + '\'' +
                 '}';
     }
 }
