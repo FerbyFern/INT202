@@ -3,7 +3,10 @@ package sit.int202.classicmodelweb;
 //import jakarta.persistence.EntityManager;
 //import jakarta.persistence.EntityManagerFactory;
 //import jakarta.persistence.Persistence;
+import at.favre.lib.crypto.bcrypt.BCrypt;
+import sit.int202.classicmodelweb.entities.Customer;
 import sit.int202.classicmodelweb.entities.Office;
+import sit.int202.classicmodelweb.repositories.CustomerRepository;
 import sit.int202.classicmodelweb.repositories.OfficeRepository;
 import sit.int202.classicmodelweb.repositories.ProductRepository;
 
@@ -11,9 +14,26 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ProductRepository productRepository = new ProductRepository();
-        System.out.println(productRepository.countAll());
-        System.out.println(productRepository.findAll(1, 15));
+        CustomerRepository customerRepository = new CustomerRepository();
+        String password1 = "1234";
+        String password2 = "1235";
+
+        Customer customer = customerRepository.findByName("Jean King");
+        System.out.println(customer);
+        BCrypt.Result result = BCrypt.verifyer().verify(password1.toCharArray(), customer.getPassword());
+        System.out.println("Password "+ password1+ (result.verified ? " is Matched": " is NOT matched"));
+
+        customer = customerRepository.findByName("Kwai Lee");
+        System.out.println(customer);
+        result = BCrypt.verifyer().verify(password2.toCharArray(), customer.getPassword());
+        System.out.println("Password "+ password2+ (result.verified ? " is Matched": " is NOT matched"));
+
+        customer = customerRepository.findByName("Khai Tong");
+        System.out.println(customer);
+
+//        ProductRepository productRepository = new ProductRepository();
+//        System.out.println(productRepository.countAll());
+//        System.out.println(productRepository.findAll(1, 15));
 /*
 //        EntityManagerFactory emf =  Persistence.createEntityManagerFactory("classic-model");
 //        EntityManager em = emf.createEntityManager();
