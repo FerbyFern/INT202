@@ -56,6 +56,11 @@ public class Customer {
     @Column(name = "password", length = 64)
     private String password;
 
+    @Column(name = "role", nullable = false, length = 50)
+    private String role;
+
+    public String getRole() { return role; }
+
     public String getPassword() {
         return password;
     }
@@ -177,6 +182,7 @@ public class Customer {
                 ", contactFirstName='" + contactFirstName + '\'' +
                 ", country='" + country + '\'' +
                 ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
