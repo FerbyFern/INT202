@@ -31,5 +31,7 @@
             </tr>
             </tbody>
         </table>
+        <%--Assign--%>
+        <button id="edit-cart" class="btn btn-primary" style="float: right; border-radius: 10px; background-color: #b84a62; border-color: #b84a62" type="button" onclick="editCart()">Edit</button>
     </c:otherwise>
 </c:choose>

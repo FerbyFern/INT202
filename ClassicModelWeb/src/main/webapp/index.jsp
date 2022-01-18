@@ -27,6 +27,12 @@
             padding-right: 5px;
             display: none;
         }
+        body {
+            background-color: #c09ba2;
+        }
+        nav {
+            background-color: #4c243b;
+        }
     </style>
     <script>
         function viewCart() {
@@ -85,7 +91,7 @@
                 } else {
                     showLoginForm();
                 }
-                document.getElementById("body-content").innerHTML = xhttp.responseText;
+                //document.getElementById("body-content").innerHTML = xhttp.responseText;
             }
             xhttp.open("GET", "office-list?officeCode=" + officeCode);
             xhttp.send();
@@ -169,13 +175,62 @@
             xhttp.open("GET","logout");
             xhttp.send();
         }
+        <%--Assign--%>
+        function editCart(){
+            setLoading('on')
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                setLoading('off');
+                document.getElementById("view-cart").innerHTML = xhttp.responseText;
+                $('#editCartModal').modal('show');
+            }
+            xhttp.open("GET", "EditCart.jsp");
+            xhttp.send();
+        }
+        function updateCart(productCode,index,price) {
+            const xhttp = new XMLHttpRequest();
+            let pCode = productCode.id;
+            let qty = productCode.value;
+            xhttp.onload = function () {
+                document.getElementById("show-total-"+index).textContent = (qty*price).toFixed(2);
+                addToCart();
+            }
+            var param = "productCode=" + pCode + "&quantity=" + qty;
+            xhttp.open("GET", "update-to-cart?" + param);
+            xhttp.send();
+        }
+        function removeItem(productCode,rowIndex){
+            var confirm1 = confirm("Are you sure you want to delete the product" + productCode.id + "?");
+            if (confirm1 == true) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function () {
+                    document.getElementById(rowIndex).setAttribute("style", "display:none");
+                    addToCart();
+                }
+                var param = "productCode=" + productCode.id + "&quantity=" + 0;
+                xhttp.open("GET", "update-to-cart?" + param);
+                xhttp.send();
+            }
+        }
+        function clearCart(){
+            var confirm1 = confirm("Are you sure you want to delete all the product?");
+            if (confirm1 == true) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function () {
+                    addToCart();
+                    viewCart();
+                }
+                xhttp.open("POST", "update-to-cart");
+                xhttp.send();
+            }
+        }
     </script>
 </head>
 <body>
 
 <jsp:include page="WEB-INF/jsp/login-form.html"/>
-
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<%--navbar-dark bg-dark--%>
+<nav class="navbar navbar-expand-sm">
     <div class="container-fluid">
         <a class="navbar-brand text-warning" href="javascript:void(0)">Classic Model</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
@@ -184,18 +239,18 @@
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:loadOffice('')">Office</a>
+                    <a class="nav-link" href="javascript:loadOffice('')" style="color: white">Office</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:loadProduct(1,15)">Product</a>
+                    <a class="nav-link" href="javascript:loadProduct(1,15)" style="color: white">Product</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Order History</a>
+                    <a class="nav-link" href="javascript:void(0)" style="color: white">Order History</a>
                 </li>
                 <li class="nav-item ml-4">
                     <!--<a class="nav-link text-light" href="#"><i class="bi bi-box-arrow-in-right"></i> Login</a>-->
                     <a id="login-menu" class="nav-link text-light" href="javascript:showLoginForm()"><i
-                            class="bi bi-box-arrow-in-right"></i> Login</a>
+                            class="bi bi-box-arrow-in-right" style="color: white"></i>Login</a>
                 </li>
             </ul>
             <div style="margin-right: 20px">
@@ -203,8 +258,8 @@
                 <button id="noOfItemInCart" class="cart-info" onclick="viewCart()"></button>
             </div>
             <form class="d-flex">
-                <input id="searchBox" class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button" onclick="googleSearch()">Search</button>
+                <input id="searchBox" class="form-control me-2" type="text" placeholder="Search" style="border-radius: 10px">
+                <button class="btn btn-primary" style="background-color: #b84a62; border-radius: 10px; border-color: #b84a62" type="button" onclick="googleSearch()">Search</button>
             </form>
         </div>
     </div>

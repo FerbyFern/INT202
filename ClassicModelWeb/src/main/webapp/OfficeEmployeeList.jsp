@@ -9,6 +9,11 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #c09ba2;
+        }
+    </style>
 </head>
 <body>
 <%--<div class="container">
@@ -55,7 +60,7 @@
     <hr>
     <br>
     <div class="row bg-light">
-        <b>Employees ::</b>
+        <b >Employees ::</b>
     </div>
     <div class="row">
         <c:forEach items="${selectedOffice.employeeList}" var="employee">
